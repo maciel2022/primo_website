@@ -1,0 +1,77 @@
+{
+  "etiqueta": "[PR/ Qué hacemos]",
+  "titulo": "Soluciones integrales.",
+  "items": [
+    {
+      "num": "01",
+      "titulo": "Rental de sonido",
+      "descripcion": "Sistemas de sonido para playa, salones y espacios íntimos, con operación técnica.",
+      "texto": "blanco",
+      "video": "/videos/servicios/01-rental-sonido.mp4",
+      "poster": "/posters/servicios/01-rental-sonido.jpg"
+    },
+    {
+      "num": "02",
+      "titulo": "Producción de iluminación",
+      "descripcion": "Diseño y operación de luces para crear el clima justo, del atardecer a la noche.",
+      "texto": "blanco",
+      "video": "/videos/servicios/02-iluminacion.mp4",
+      "poster": "/posters/servicios/02-iluminacion.jpg"
+    },
+    {
+      "num": "03",
+      "titulo": "Decoración",
+      "descripcion": "Ambientación y escenografía a la medida de cada espacio y de cada concepto.",
+      "texto": "blanco",
+      "video": "/videos/servicios/03-decoracion.mp4",
+      "poster": "/posters/servicios/03-decoracion.jpg"
+    },
+    {
+      "num": "04",
+      "titulo": "Marketing y comunicación",
+      "descripcion": "Estrategia, contenidos y difusión para que tu evento llegue a quien tiene que llegar.",
+      "texto": "negro (#0B0B0B) con velo blanco abajo",
+      "video": "/videos/servicios/04-marketing.mp4",
+      "poster": "/posters/servicios/04-marketing.jpg"
+    },
+    {
+      "num": "05",
+      "titulo": "Animación y performance",
+      "descripcion": "Shows, performers y propuestas artísticas que le dan identidad al evento.",
+      "texto": "blanco",
+      "video": "/videos/servicios/05-animacion.mp4",
+      "poster": "/posters/servicios/05-animacion.jpg"
+    },
+    {
+      "num": "06",
+      "titulo": "Venta de tickets",
+      "descripcion": "Gestión de entradas y acceso para eventos abiertos al público.",
+      "texto": "blanco sobre velo negro fuerte (40% arriba → 92% abajo)",
+      "imagen": "/images/servicios/06-tickets.jpg"
+    },
+    {
+      "num": "07",
+      "titulo": "Locaciones",
+      "descripcion": "Playas, salones y espacios con personalidad: te ayudamos a encontrar el lugar ideal.",
+      "texto": "blanco",
+      "video": "/videos/servicios/07-locaciones.mp4",
+      "poster": "/posters/servicios/07-locaciones.jpg"
+    },
+    {
+      "num": "08",
+      "titulo": "Foto y filmmakers",
+      "descripcion": "Fotógrafos y filmmakers para registrar cada momento y generar contenido.",
+      "texto": "blanco",
+      "video": "/videos/servicios/08-foto-film.mp4",
+      "poster": "/posters/servicios/08-foto-film.jpg"
+    },
+    {
+      "num": "09",
+      "titulo": "Catering y barra",
+      "descripcion": "Propuestas gastronómicas y de barra coordinadas con el resto de la producción.",
+      "texto": "blanco",
+      "video": "/videos/servicios/09-catering-barra.mp4",
+      "poster": "/posters/servicios/09-catering-barra.jpg"
+    }
+  ]
+}

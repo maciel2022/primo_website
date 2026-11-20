@@ -1,0 +1,250 @@
+@import 'tailwindcss';
+@import './styles/scenes.css';
+
+/* ───────── Tokens ───────── */
+@theme {
+  --color-red: #d91e26;
+  --color-ink: #0b0b0b;
+  --color-paper: #ffffff;
+  --color-mist: #f2f2f2;
+  --color-line: #e1e1e1;
+  --color-line-soft: #e7e7e7;
+  --color-coal: #161616;
+
+  --font-display: Archivo, Impact, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-sans: Inter, system-ui, sans-serif;
+
+  --ease-primo: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+/* Cortes de layout de la referencia: tablet ≤1080px, mobile ≤640px */
+@custom-variant tablet (@media (width <= 1080px));
+@custom-variant mobile (@media (width <= 640px));
+
+/* ───────── Base ───────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 76px;
+  }
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-red);
+    outline-offset: 3px;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+/* ───────── Identidad ───────── */
+@layer components {
+  /* Tipografía display: Archivo condensada, 900, mayúsculas */
+  .display {
+    font-family: var(--font-display);
+    font-stretch: 62%;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .h-section {
+    font-size: clamp(46px, 6.2cqi, 92px);
+    text-wrap: balance;
+  }
+
+  /* Contenedor y ritmo vertical */
+  .wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1360px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 4cqi, 56px);
+  }
+  .section {
+    position: relative;
+    padding-block: clamp(72px, 8cqi, 120px);
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  /* Etiqueta mono de sección: [PR/ …] con ícono rojo */
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 28px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #555;
+  }
+  .label-flag {
+    display: block;
+    flex: none;
+    width: 16px;
+    height: 10px;
+    background: var(--color-red);
+    clip-path: polygon(0 0, 100% 50%, 0 100%, 0 0, 30% 0, 30% 100%);
+  }
+  .dark .label {
+    color: #bdbdbd;
+  }
+  .mono {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Guías visibles: 4 columnas (2 en mobile) */
+  .guides {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .guides > .wrap {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .guides span {
+    height: 100%;
+    border-left: 1px solid rgb(11 11 11 / 0.07);
+  }
+  .guides span:last-child {
+    border-right: 1px solid rgb(11 11 11 / 0.07);
+  }
+  .dark .guides span {
+    border-color: rgb(255 255 255 / 0.07);
+  }
+  @media (width <= 640px) {
+    .guides > .wrap {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .guides span:nth-child(n + 3) {
+      display: none;
+    }
+    .guides span:nth-child(2) {
+      border-right: 1px solid rgb(11 11 11 / 0.07);
+    }
+    .dark .guides span:nth-child(2) {
+      border-color: rgb(255 255 255 / 0.07);
+    }
+  }
+
+  /* Secciones oscuras */
+  .dark {
+    background: var(--color-ink);
+    color: #fff;
+  }
+
+  /* Botón: bloque de texto + bloque de flecha con esquina cortada */
+  .btn {
+    display: inline-flex;
+    align-items: stretch;
+    min-height: 48px;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .btn-text {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    transition: padding 0.35s var(--ease-primo);
+  }
+  .btn-arrow {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    color: #fff;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  }
+  .btn:hover .btn-text {
+    padding: 0 28px;
+  }
+  .btn-block {
+    display: flex;
+  }
+  .btn-block .btn-text {
+    flex: 1;
+  }
+  .btn-block:hover .btn-text {
+    padding: 0 20px;
+  }
+}
+
+/* ───────── Utilidades ───────── */
+/* Esquinas cortadas (chamfer) */
+@utility chamfer-tr {
+  clip-path: polygon(0 0, calc(100% - 64px) 0, 100% 64px, 100% 100%, 0 100%);
+}
+@utility chamfer-bl {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 56px 100%, 0 calc(100% - 56px));
+}
+@utility chamfer-2 {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 40px) 0,
+    100% 40px,
+    100% 100%,
+    40px 100%,
+    0 calc(100% - 40px)
+  );
+}
+/* Zoom suave de medios en hover (el padre lleva la clase `group`) */
+@utility media-zoom {
+  transition: transform 1.3s var(--ease-primo);
+  @variant group-hover {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

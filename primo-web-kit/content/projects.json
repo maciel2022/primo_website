@@ -1,0 +1,104 @@
+{
+  "etiqueta": "[PR/ Proyectos]",
+  "titulo": "Nuestro trabajo habla por nosotros.",
+  "nota": "Todos son DEMOSTRATIVOS: mostrar la etiqueta 'Demo' hasta reemplazarlos por proyectos reales.",
+  "items": [
+    {
+      "nombre": "Sunset session frente al mar",
+      "tipo": "Sunset session",
+      "ubicacion": "[Ubicación]",
+      "anio": "[Año]",
+      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
+      "servicios": [
+        "Rental de sonido",
+        "DJ",
+        "Iluminación",
+        "Barra"
+      ],
+      "portada": null,
+      "galeria": [],
+      "video": null,
+      "demo": true
+    },
+    {
+      "nombre": "Show acústico en salón",
+      "tipo": "Show íntimo",
+      "ubicacion": "[Ubicación]",
+      "anio": "[Año]",
+      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
+      "servicios": [
+        "Sonido",
+        "Iluminación",
+        "Solista"
+      ],
+      "portada": null,
+      "galeria": [],
+      "video": null,
+      "demo": true
+    },
+    {
+      "nombre": "Noche de DJ en salón",
+      "tipo": "Sesión de DJ",
+      "ubicacion": "[Ubicación]",
+      "anio": "[Año]",
+      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
+      "servicios": [
+        "Rental de sonido",
+        "Iluminación",
+        "DJs"
+      ],
+      "portada": null,
+      "galeria": [],
+      "video": null,
+      "demo": true
+    },
+    {
+      "nombre": "Evento privado en la playa",
+      "tipo": "Evento privado",
+      "ubicacion": "[Ubicación]",
+      "anio": "[Año]",
+      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
+      "servicios": [
+        "Locación",
+        "Decoración",
+        "Catering y barra"
+      ],
+      "portada": null,
+      "galeria": [],
+      "video": null,
+      "demo": true
+    },
+    {
+      "nombre": "Lanzamiento de marca boutique",
+      "tipo": "Lanzamiento de marca",
+      "ubicacion": "[Ubicación]",
+      "anio": "[Año]",
+      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
+      "servicios": [
+        "Marketing y comunicación",
+        "Decoración",
+        "Foto y video"
+      ],
+      "portada": null,
+      "galeria": [],
+      "video": null,
+      "demo": true
+    },
+    {
+      "nombre": "Encuentro corporativo boutique",
+      "tipo": "Corporativo",
+      "ubicacion": "[Ubicación]",
+      "anio": "[Año]",
+      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
+      "servicios": [
+        "Sonido",
+        "Animación",
+        "Catering"
+      ],
+      "portada": null,
+      "galeria": [],
+      "video": null,
+      "demo": true
+    }
+  ]
+}

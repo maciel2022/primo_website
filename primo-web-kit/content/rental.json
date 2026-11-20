@@ -1,0 +1,54 @@
+{
+  "etiqueta": "[PR/ Rental]",
+  "titulo": "Nuestro rental.",
+  "destacado": "Equipo destacado",
+  "nombre": "Sonido profesional",
+  "descripcion": "Cabina DJ profesional y sistema de sonido completo para eventos de pequeña y mediana escala: en la playa, en salones y en espacios íntimos.",
+  "ficha": [
+    {
+      "dato": "Mixer",
+      "valor": "1 × Pioneer DJ DJM-450 · 2 canales"
+    },
+    {
+      "dato": "Reproductores",
+      "valor": "2 × Pioneer DJ XDJ-1000 · USB y Rekordbox"
+    },
+    {
+      "dato": "Cajas acústicas",
+      "valor": "2 × Samson 15\" con componentes JBL · 2 vías (woofer 15\" + driver 1\")"
+    },
+    {
+      "dato": "Potencia",
+      "valor": "700 W RMS (350 W por caja) · pasivas con potencia E-Sound DJX 600"
+    },
+    {
+      "dato": "Cobertura",
+      "valor": "De 100 a 200 personas aprox."
+    }
+  ],
+  "nota": "La cobertura depende del espacio, la distribución del público y la acústica. ¿Tu evento necesita más? Conseguimos equipamiento adicional a medida.",
+  "ctas": [
+    {
+      "texto": "Consultá disponibilidad",
+      "href": "#contacto"
+    },
+    {
+      "texto": "WhatsApp",
+      "href": "whatsapp"
+    }
+  ],
+  "otros": [
+    "Más sonido",
+    "Iluminación",
+    "Decoración",
+    "Equipamiento a medida"
+  ],
+  "media": {
+    "video": "/videos/rental-sonido.mp4",
+    "poster": "/posters/rental-sonido.jpg",
+    "alt": "DJ mezclando en un controlador iluminado"
+  },
+  "reglas": [
+    "Nunca mostrar precios en el sitio."
+  ]
+}

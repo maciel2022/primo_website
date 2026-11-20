@@ -1,0 +1,150 @@
+{
+  "marca": "PRIMO",
+  "claim": "Transformamos ideas en experiencias extraordinarias.",
+  "hero": {
+    "etiqueta": "Creamos experiencias.\nProducción integral de eventos.",
+    "bajada": "Creatividad, tecnología y ejecución en cada detalle. Transformamos ideas en experiencias extraordinarias.",
+    "ctaPrimario": {
+      "texto": "Conocé nuestro trabajo",
+      "href": "#proyectos"
+    },
+    "ctaSecundario": {
+      "texto": "Hablemos de tu evento",
+      "href": "#contacto"
+    },
+    "video": "/videos/hero.mp4",
+    "poster": "/posters/hero.jpg"
+  },
+  "nosotros": {
+    "etiqueta": "[PR/ Quiénes somos]",
+    "titulo": "Mucho más que producir eventos. Transformamos conceptos en experiencias memorables.",
+    "palabraDestacada": "conceptos",
+    "texto": "Somos una productora integral que transforma conceptos en experiencias memorables. Combinamos creatividad, planificación estratégica y soluciones técnicas para desarrollar eventos únicos, adaptados a cada proyecto y a cada cliente.",
+    "cta": {
+      "texto": "Nuestro rental",
+      "href": "#rental"
+    },
+    "mediaChica": {
+      "video": "/videos/nosotros-salon.mp4",
+      "poster": "/posters/nosotros-salon.jpg",
+      "alt": "Gente bailando en un salón con luces cálidas"
+    },
+    "mediaGrande": {
+      "video": "/videos/nosotros-en-vivo.mp4",
+      "poster": "/posters/nosotros-en-vivo.jpg",
+      "alt": "DJ en un salón con luces rojas y público bailando"
+    }
+  },
+  "nav": [
+    {
+      "texto": "Inicio",
+      "href": "#inicio"
+    },
+    {
+      "texto": "Nosotros",
+      "href": "#nosotros"
+    },
+    {
+      "texto": "Rental",
+      "href": "#rental"
+    },
+    {
+      "texto": "Servicios",
+      "href": "#servicios"
+    },
+    {
+      "texto": "Artistas",
+      "href": "#artistas"
+    },
+    {
+      "texto": "Proyectos",
+      "href": "#proyectos"
+    },
+    {
+      "texto": "Contacto",
+      "href": "#contacto"
+    }
+  ],
+  "contacto": {
+    "titulo": "Hagamos algo extraordinario.",
+    "bajada": "Contanos tu idea. Nosotros nos encargamos de convertirla en realidad.",
+    "whatsapp": "https://wa.me/[NUMERO_CON_CODIGO_DE_PAIS]",
+    "email": "[TU EMAIL]",
+    "instagram": {
+      "usuario": "@[TU_USUARIO]",
+      "url": "https://www.instagram.com/[TU_USUARIO]"
+    },
+    "telefono": "[TU TELÉFONO]",
+    "zona": "[CIUDAD / ZONA DE COBERTURA]",
+    "formulario": {
+      "servicios": [
+        "Rental de equipamiento",
+        "Artistas / DJs",
+        "Producción del evento",
+        "Otro servicio"
+      ],
+      "tiposEvento": [
+        "Sunset session",
+        "Evento en la playa",
+        "Show íntimo",
+        "Evento privado",
+        "Lanzamiento de marca",
+        "Corporativo",
+        "Otro"
+      ],
+      "exito": {
+        "titulo": "Gracias por escribirnos.",
+        "texto": "Te vamos a contactar a la brevedad para conversar sobre tu evento."
+      }
+    }
+  },
+  "pilares": {
+    "titulo": "Cada detalle importa.",
+    "items": [
+      {
+        "titulo": "Creatividad",
+        "texto": "Cada propuesta nace de una idea pensada para tu público, tu marca y tu objetivo."
+      },
+      {
+        "titulo": "Profesionalismo",
+        "texto": "Planificación rigurosa, cronogramas claros y un equipo que responde por cada etapa."
+      },
+      {
+        "titulo": "Tecnología",
+        "texto": "Sonido, iluminación, video y pantallas LED al servicio de la experiencia."
+      },
+      {
+        "titulo": "Compromiso",
+        "texto": "Te acompañamos desde la primera reunión hasta el último desmontaje."
+      }
+    ]
+  },
+  "proceso": {
+    "titulo": "De la idea a la experiencia.",
+    "pasos": [
+      {
+        "titulo": "Conceptualización",
+        "texto": "Escuchamos tu idea y definimos objetivos, público y el concepto creativo de la experiencia."
+      },
+      {
+        "titulo": "Planificación",
+        "texto": "Armamos presupuesto, cronograma, equipo y proveedores para cada etapa."
+      },
+      {
+        "titulo": "Diseño y producción",
+        "texto": "Desarrollamos escenografía, contenidos y la solución técnica del evento."
+      },
+      {
+        "titulo": "Montaje y ejecución",
+        "texto": "Llevamos todo al lugar, operamos el evento y resolvemos en tiempo real."
+      },
+      {
+        "titulo": "Evaluación y cierre",
+        "texto": "Desmontaje, balance del proyecto y aprendizajes para la próxima experiencia."
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2026 PRIMO. Todos los derechos reservados."
+  }
+}
