@@ -20,6 +20,11 @@
       "video": "/videos/proyectos/shows-intimos.mp4",
       "poster": "/posters/proyectos/shows-intimos.jpg",
       "encuadre": "50% 28%"
+    },
+    {
+      "video": "/videos/proyectos/noches-de-dj.mp4",
+      "poster": "/posters/proyectos/noches-de-dj.jpg",
+      "encuadre": "62% 50%"
     }
   ],
   "items": [
@@ -39,7 +44,7 @@
       "titulo": "Noches de DJ",
       "descripcion": "Cabina profesional, sonido y luces para una noche de pista en salón, con DJs de nuestro roster.",
       "servicios": ["Rental de sonido", "Iluminación", "DJs"],
-      "video": 0
+      "video": 3
     },
     {
       "titulo": "Eventos privados en la playa",
