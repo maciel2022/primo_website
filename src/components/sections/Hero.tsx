@@ -54,11 +54,11 @@ export function Hero() {
       </div>
 
       {/* Solo mientras el video no sea material propio */}
-      <span className="mono absolute top-24 right-6 z-6 border border-white/20 bg-black/55 px-3 py-[7px] text-[10px] tracking-[.16em] text-[#f5f5f5]">
+      <span className="mono absolute top-24 right-6 z-6 mobile:top-[84px] mobile:right-5 border border-white/20 bg-black/55 px-3 py-[7px] text-[10px] tracking-[.16em] text-[#f5f5f5]">
         Video de muestra
       </span>
 
-      <div className="absolute inset-x-0 top-[150px] z-4 mobile:top-[110px]">
+      <div className="absolute inset-x-0 top-[150px] z-4 mobile:top-[132px]">
         <div className="wrap cols items-start mobile:block">
           <motion.p
             {...up(0.3)}
