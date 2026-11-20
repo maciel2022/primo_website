@@ -88,7 +88,7 @@ export function Proyectos() {
               ) : null,
             )}
             <span
-              className="absolute inset-0 bg-[linear-gradient(rgb(0_0_0/.35),rgb(0_0_0/.25)_30%,rgb(0_0_0/.88))]"
+              className="absolute inset-0 bg-[linear-gradient(rgb(0_0_0/.35),rgb(0_0_0/.25)_28%,rgb(0_0_0/.7)_58%,rgb(0_0_0/.9))]"
               aria-hidden="true"
             />
             <span className="absolute top-6 left-7 bg-white px-3 py-2 font-mono text-xs text-ink mobile:left-5">

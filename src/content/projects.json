@@ -30,6 +30,11 @@
       "video": "/videos/proyectos/corporativos-boutique.mp4",
       "poster": "/posters/proyectos/corporativos-boutique.jpg",
       "encuadre": "50% 50%"
+    },
+    {
+      "video": "/videos/proyectos/eventos-en-la-playa.mp4",
+      "poster": "/posters/proyectos/eventos-en-la-playa.jpg",
+      "encuadre": "50% 32%"
     }
   ],
   "items": [
@@ -55,7 +60,7 @@
       "titulo": "Eventos privados en la playa",
       "descripcion": "Celebraciones a medida: encontramos la locación, la ambientamos y coordinamos catering y barra.",
       "servicios": ["Locación", "Decoración", "Catering y barra"],
-      "video": 1
+      "video": 5
     },
     {
       "titulo": "Lanzamientos de marca",
