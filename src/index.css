@@ -325,3 +325,43 @@
     }
   }
 }
+
+/* ───────── Formulario de contacto ───────── */
+@layer components {
+  .field {
+    min-height: 52px;
+    padding: 0 14px;
+    border: 0;
+    border-bottom: 1px solid #5a5a5a;
+    border-radius: 0;
+    background: var(--color-coal);
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    color-scheme: dark;
+    transition: border-color 0.25s;
+  }
+  textarea.field {
+    min-height: 130px;
+    padding: 14px;
+    resize: vertical;
+  }
+  select.field {
+    appearance: none;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+  .field::placeholder {
+    color: #9a9a9a;
+  }
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--color-red);
+    box-shadow: 0 1px 0 var(--color-red);
+  }
+  .field[aria-invalid='true'] {
+    border-bottom-color: #ff8a8f;
+  }
+}

@@ -7,6 +7,9 @@ import { Rental } from './components/sections/Rental'
 import { TiposEventos } from './components/sections/TiposEventos'
 import { Artistas } from './components/sections/Artistas'
 import { Proyectos } from './components/sections/Proyectos'
+import { Proceso } from './components/sections/Proceso'
+import { Pilares } from './components/sections/Pilares'
+import { Contacto } from './components/sections/Contacto'
 import { Servicios } from './components/sections/Servicios'
 
 export default function App() {
@@ -22,6 +25,9 @@ export default function App() {
         <TiposEventos />
         <Artistas />
         <Proyectos />
+        <Proceso />
+        <Pilares />
+        <Contacto />
       </main>
       <Footer />
     </MotionConfig>
