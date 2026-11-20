@@ -31,7 +31,7 @@ export function Pilares() {
               delay={i * 0.06}
               className={`pt-8 pr-7 pb-12 mobile:border-b mobile:border-white/35 mobile:px-0 mobile:pt-6 mobile:pb-7 ${
                 i > 0 ? 'border-l border-white/35 pl-7 mobile:border-l-0' : ''
-              } ${i === 2 ? 'tablet:border-l-0 tablet:pl-0' : ''}`}
+              } ${i === 2 ? 'tablet:border-l-0 tablet:pl-0' : ''} ${i >= 2 ? 'tablet:border-t tablet:border-white/35' : ''}`}
             >
               <span className="font-mono text-[11px]">[{String(i + 1).padStart(2, '0')}]</span>
               <h3 className="display mt-3.5 mb-3 text-[34px]">{p.titulo}</h3>

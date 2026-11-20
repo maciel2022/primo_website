@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useId, useState } from 'react'
-import { EASE } from './Reveal'
+import { EASE } from './motion'
 
 interface Item {
   titulo: string

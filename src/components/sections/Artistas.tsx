@@ -20,7 +20,6 @@ function Card({ a, index, scene }: { a: Artist; index: number; scene: Scene }) {
   return (
     <motion.a
       href="#contacto"
-      aria-label={`Consultar por ${a.nombre}`}
       className={`group relative block h-[400px] overflow-hidden bg-[#1a1a1a] text-white no-underline mobile:h-[300px] ${CHAMFERS[index % 4]}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -47,11 +46,13 @@ function Card({ a, index, scene }: { a: Artist; index: number; scene: Scene }) {
         ) : (
           <span />
         )}
-        <span>
+        {/* Con el corte abajo a la izquierda, el texto se corre para no quedar recortado */}
+        <span className={CHAMFERS[index % 4] === 'chamfer-bl' ? 'pl-11' : ''}>
           <b className="display block text-[30px] leading-none">{a.nombre}</b>
           <small className="mt-2 block font-mono text-[11px] uppercase">
             {[singular(a.categoria), ...a.estilos].join(' · ')}
           </small>
+          <span className="sr-only"> — consultar</span>
         </span>
       </span>
     </motion.a>

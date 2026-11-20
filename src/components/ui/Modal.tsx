@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useRef, type ReactNode } from 'react'
 import { useDialog } from '../../hooks/useDialog'
 import { Close } from './Icons'
-import { EASE } from './Reveal'
+import { EASE } from './motion'
 
 interface Props {
   open: boolean

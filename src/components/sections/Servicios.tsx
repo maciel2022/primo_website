@@ -24,8 +24,7 @@ function Card({ s }: { s: Service }) {
   return (
     <a
       href="#contacto"
-      aria-label={`${s.titulo} — consultar`}
-      className={`group relative flex min-h-80 flex-col justify-between overflow-hidden bg-[#1a1a1a] p-7 no-underline mobile:min-h-[260px] ${t.text}`}
+      className={`group relative flex min-h-80 flex-col justify-between overflow-hidden bg-[#1a1a1a] p-7 no-underline mobile:min-h-[260px] tablet:last:odd:col-span-2 mobile:last:odd:col-span-1 ${t.text}`}
     >
       <span className="absolute inset-0 media-zoom" aria-hidden="true">
         {s.video && s.poster ? (
@@ -45,6 +44,7 @@ function Card({ s }: { s: Service }) {
         <span className="font-mono text-[11px]">{s.num}</span>
         <h3 className="display mt-2.5 text-[clamp(30px,2.9cqi,42px)]">{s.titulo}</h3>
         <p className="mt-3.5 mb-0 max-w-[34ch] text-sm leading-[1.55] opacity-90">{s.descripcion}</p>
+        <span className="sr-only"> — consultar</span>
       </div>
       <span className="relative grid h-11 w-11 place-items-center self-start border border-current transition-transform duration-400 group-hover:rotate-45">
         <ArrowDiag size={16} stroke={1.5} />

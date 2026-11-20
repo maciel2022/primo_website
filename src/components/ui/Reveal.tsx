@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import type { CSSProperties, ReactNode } from 'react'
+import { EASE } from './motion'
 
-export const EASE = [0.2, 0.7, 0.1, 1] as const
 
 /** Aparición del bloque al entrar en pantalla, una sola vez. */
 export function Reveal({

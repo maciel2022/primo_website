@@ -11,18 +11,19 @@ interface Props {
 
 /**
  * Video de fondo sin sonido y en loop. No descarga nada hasta entrar en pantalla
- * (preload="none" + IntersectionObserver); mientras tanto se ve el poster.
+ * (preload="none" + IntersectionObserver); mientras tanto se ve el poster,
+ * que también se carga recién cuando el video está cerca del viewport.
  * Ocupa todo el contenedor, que tiene que ser `relative` con altura definida.
  */
 export function MediaVideo({ src, poster, alt, className = '' }: Props) {
   const ref = useRef<HTMLVideoElement>(null)
-  useInViewVideo(ref)
+  const near = useInViewVideo(ref)
   return (
     <video
       ref={ref}
       className={`absolute inset-0 h-full w-full object-cover ${className}`}
       src={src}
-      poster={poster}
+      poster={near ? poster : undefined}
       muted
       loop
       playsInline

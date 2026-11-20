@@ -17,7 +17,7 @@ export function Proceso() {
             scene="dj"
             caption="Foto · Montaje técnico"
             alt="Montaje técnico (foto de referencia)"
-            className="chamfer-bl mt-10 h-[300px] tablet:max-w-[340px] [&_.scene-caption]:right-3.5 [&_.scene-caption]:left-auto"
+            className="chamfer-bl mt-10 h-[300px] tablet:max-w-[340px] [&_.scene-caption]:right-3.5 [&_.scene-caption]:left-auto!"
           />
         </Reveal>
         <div className="col-span-9 col-start-4 tablet:mt-10">

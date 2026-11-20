@@ -158,7 +158,6 @@ export function Proyectos() {
                 key={p.nombre}
                 type="button"
                 onClick={() => setOpen(i)}
-                aria-label={`Ver proyecto: ${p.nombre}`}
                 aria-haspopup="dialog"
                 className="tile group"
                 style={
@@ -180,6 +179,7 @@ export function Proyectos() {
                 <span className="absolute inset-x-0 bottom-0 z-4 bg-[linear-gradient(transparent,rgb(0_0_0/.75))] px-4 py-3.5 text-left text-white">
                   <b className="display block text-2xl leading-none">{p.nombre}</b>
                   <small className="mt-1.5 block font-mono text-[10px] uppercase opacity-90">{meta(p)}</small>
+                  <span className="sr-only"> — ver proyecto</span>
                 </span>
               </button>
             )

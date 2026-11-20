@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { site } from '../../content'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { Button } from '../ui/Button'
-import { EASE } from '../ui/Reveal'
+import { EASE } from '../ui/motion'
 
 const up = (delay: number) => ({
   initial: { opacity: 0, y: 32 },
