@@ -47,16 +47,16 @@ function Destacado({ a, index }: { a: Artist; index: number }) {
         <div className="flex flex-col items-start gap-2">
           {a.presskit ? (
             <Button href={a.presskit} download tone="red" icon="down">
-              Descargar presskit
+              Presskit
             </Button>
           ) : (
-            // Sin PDF cargado todavía: el presskit se pide por el formulario
+            // Sin PDF cargado todavía: mismo botón, pero el presskit se pide por el formulario
             <Button
               href="#contacto"
               tone="red"
               onClick={() => pedirConsulta({ artistas: true, mensaje: `Quiero recibir el presskit de ${a.nombre}.` })}
             >
-              Pedir presskit
+              Presskit
             </Button>
           )}
           <Button
