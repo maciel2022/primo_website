@@ -19,7 +19,12 @@ export function SectionHead({
       <Label className="col-span-3">{etiqueta}</Label>
       <div className="col-span-9 col-start-4">
         <h2 className="display h-section" id={id}>
-          {titulo}
+          {/* Cada oración del título va en su propia línea */}
+          {titulo.split(/(?<=\.)\s+/).map((linea) => (
+            <span key={linea} className="block">
+              {linea}
+            </span>
+          ))}
         </h2>
         {children}
       </div>
