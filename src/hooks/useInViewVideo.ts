@@ -3,11 +3,11 @@ import { usePrefersReducedMotion } from './usePrefersReducedMotion'
 
 /**
  * Reproduce el video solo mientras está en pantalla y lo pausa al salir.
- * Con prefers-reduced-motion no reproduce nunca: queda el poster.
+ * Con prefers-reduced-motion, o con `active` en false, no reproduce: queda el poster o el último cuadro.
  * Devuelve `near`: true cuando el video está cerca del viewport, para cargar
  * recién ahí el poster (así los posters de abajo no compiten con el hero).
  */
-export function useInViewVideo(ref: RefObject<HTMLVideoElement | null>): boolean {
+export function useInViewVideo(ref: RefObject<HTMLVideoElement | null>, active = true): boolean {
   const reduced = usePrefersReducedMotion()
   const [near, setNear] = useState(false)
 
@@ -30,7 +30,7 @@ export function useInViewVideo(ref: RefObject<HTMLVideoElement | null>): boolean
   useEffect(() => {
     const video = ref.current
     if (!video) return
-    if (reduced) {
+    if (reduced || !active) {
       video.pause()
       return
     }
@@ -48,7 +48,7 @@ export function useInViewVideo(ref: RefObject<HTMLVideoElement | null>): boolean
     )
     io.observe(video)
     return () => io.disconnect()
-  }, [ref, reduced])
+  }, [ref, reduced, active])
 
   return near
 }

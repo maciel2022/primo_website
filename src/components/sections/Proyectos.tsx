@@ -23,13 +23,19 @@ export function Proyectos() {
   const next = (i + 1) % n
   const videoOf = (idx: number) => (videos.length ? (items[idx].video ?? idx) % videos.length : -1)
   const active = videoOf(i)
+  // Un video se monta (y se descarga) recién la primera vez que su tarjeta queda al frente
+  const [vistos, setVistos] = useState(() => new Set([active]))
+  const go = (idx: number) => {
+    setI(idx)
+    setVistos((v) => (v.has(videoOf(idx)) ? v : new Set(v).add(videoOf(idx))))
+  }
 
   const side = (idx: number, dir: 'Anterior' | 'Siguiente', chamfer: string) => {
     const bg = videos[videoOf(idx)]
     return (
       <button
         type="button"
-        onClick={() => setI(idx)}
+        onClick={() => go(idx)}
         aria-label={`${dir}: ${items[idx].titulo}`}
         className={`group relative block h-[360px] w-full overflow-hidden border-0 bg-coal p-0 text-left opacity-60 transition-opacity duration-400 hover:opacity-90 focus-visible:opacity-90 tablet:hidden ${chamfer}`}
       >
@@ -40,6 +46,7 @@ export function Proyectos() {
             loading="lazy"
             decoding="async"
             className="media-zoom absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: bg.encuadre }}
           />
         )}
         <span className="absolute inset-0 bg-[linear-gradient(rgb(0_0_0/.35),rgb(0_0_0/.8))]" aria-hidden="true" />
@@ -69,15 +76,17 @@ export function Proyectos() {
           {side(prev, 'Anterior', 'chamfer-bl')}
 
           <div className="chamfer-tr relative h-[520px] overflow-hidden bg-coal mobile:h-[500px]">
-            {/* Los videos quedan montados y solo cambia cuál se ve: así no se reinician en cada tarjeta */}
-            {videos.map((v, k) => (
-              <div
-                key={v.video}
-                className={`absolute inset-0 transition-opacity duration-700 ${k === active ? 'opacity-100' : 'opacity-0'}`}
-              >
-                <MediaVideo src={v.video} poster={v.poster} />
-              </div>
-            ))}
+            {/* Los videos ya vistos quedan montados y hacen fundido; solo se reproduce el activo */}
+            {videos.map((v, k) =>
+              vistos.has(k) ? (
+                <div
+                  key={v.video}
+                  className={`absolute inset-0 transition-opacity duration-700 ${k === active ? 'opacity-100' : 'opacity-0'}`}
+                >
+                  <MediaVideo src={v.video} poster={v.poster} position={v.encuadre} active={k === active} />
+                </div>
+              ) : null,
+            )}
             <span
               className="absolute inset-0 bg-[linear-gradient(rgb(0_0_0/.35),rgb(0_0_0/.25)_30%,rgb(0_0_0/.88))]"
               aria-hidden="true"
@@ -123,7 +132,7 @@ export function Proyectos() {
             <button
               type="button"
               aria-label="Tipo de proyecto anterior"
-              onClick={() => setI(prev)}
+              onClick={() => go(prev)}
               className="grid h-14 w-14 place-items-center border-0 bg-white text-ink"
             >
               <ArrowLeft size={18} stroke={1.5} />
@@ -131,7 +140,7 @@ export function Proyectos() {
             <button
               type="button"
               aria-label="Tipo de proyecto siguiente"
-              onClick={() => setI(next)}
+              onClick={() => go(next)}
               className="grid h-14 w-14 place-items-center border-0 bg-red text-white"
             >
               <ArrowRight size={18} stroke={1.5} />

@@ -49,6 +49,8 @@ export interface Project {
 export interface BackgroundVideo {
   video: string
   poster: string
+  /** object-position del recorte, ej. "50% 28%". Útil en videos verticales. */
+  encuadre?: string
 }
 
 export const site = siteJson

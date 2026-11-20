@@ -6,7 +6,7 @@
     "texto": "Quiero algo así",
     "href": "#contacto"
   },
-  "nota": "Los videos de fondo se comparten entre tarjetas: cada item elige uno por su posición en la lista `videos` (0, 1…). Alcanza con uno solo.",
+  "nota": "Cada item elige su video de fondo por la posición en la lista `videos` (0, 1, 2…); varios items pueden compartir el mismo. `encuadre` es opcional: qué parte del video queda visible al recortar (ej. \"50% 28%\" para videos verticales).",
   "videos": [
     {
       "video": "/videos/nosotros-en-vivo.mp4",
@@ -15,6 +15,11 @@
     {
       "video": "/videos/servicios/07-locaciones.mp4",
       "poster": "/posters/servicios/07-locaciones.jpg"
+    },
+    {
+      "video": "/videos/proyectos/shows-intimos.mp4",
+      "poster": "/posters/proyectos/shows-intimos.jpg",
+      "encuadre": "50% 28%"
     }
   ],
   "items": [
@@ -28,7 +33,7 @@
       "titulo": "Shows íntimos",
       "descripcion": "Formatos acústicos y de cerca en salones chicos, con sonido e iluminación a la medida del lugar.",
       "servicios": ["Sonido", "Iluminación", "Solista"],
-      "video": 0
+      "video": 2
     },
     {
       "titulo": "Noches de DJ",
