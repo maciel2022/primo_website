@@ -25,6 +25,11 @@
       "video": "/videos/proyectos/noches-de-dj.mp4",
       "poster": "/posters/proyectos/noches-de-dj.jpg",
       "encuadre": "50% 40%"
+    },
+    {
+      "video": "/videos/proyectos/corporativos-boutique.mp4",
+      "poster": "/posters/proyectos/corporativos-boutique.jpg",
+      "encuadre": "50% 50%"
     }
   ],
   "items": [
@@ -62,7 +67,7 @@
       "titulo": "Corporativos boutique",
       "descripcion": "Encuentros de empresa a escala chica, con sonido, animación y catering coordinados.",
       "servicios": ["Sonido", "Animación", "Catering"],
-      "video": 1
+      "video": 4
     }
   ]
 }
