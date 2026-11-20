@@ -4,7 +4,6 @@ import { Navbar } from './components/layout/Navbar'
 import { Hero } from './components/sections/Hero'
 import { Nosotros } from './components/sections/Nosotros'
 import { Rental } from './components/sections/Rental'
-import { TiposEventos } from './components/sections/TiposEventos'
 import { Artistas } from './components/sections/Artistas'
 import { Proyectos } from './components/sections/Proyectos'
 import { Proceso } from './components/sections/Proceso'
@@ -22,7 +21,6 @@ export default function App() {
         <Nosotros />
         <Rental />
         <Servicios />
-        <TiposEventos />
         <Artistas />
         <Proyectos />
         <Proceso />

@@ -1,203 +1,151 @@
+import { motion } from 'motion/react'
 import { useState } from 'react'
-import { projects, type Project } from '../../content'
+import { projects } from '../../content'
 import { Button } from '../ui/Button'
 import { Guides } from '../ui/Guides'
-import { Play } from '../ui/Icons'
-import { Label } from '../ui/Label'
-import { MediaPlaceholder, type Scene } from '../ui/MediaPlaceholder'
-import { Modal } from '../ui/Modal'
+import { ArrowLeft, ArrowRight } from '../ui/Icons'
+import { MediaVideo } from '../ui/MediaVideo'
+import { EASE } from '../ui/motion'
 import { SectionHead } from '../ui/SectionHead'
 
-// Posición de cada tarjeta en el collage de desktop (se repite si hay más de 6)
-const POS = [
-  { left: '2%', top: '30px', width: '300px', height: '230px', rotate: '-4deg' },
-  { left: '34%', top: '0px', width: '260px', height: '200px', rotate: '3deg' },
-  { left: '68%', top: '40px', width: '320px', height: '240px', rotate: '-2deg' },
-  { left: '6%', top: '470px', width: '340px', height: '260px', rotate: '3deg' },
-  { left: '40%', top: '560px', width: '280px', height: '220px', rotate: '-3deg' },
-  { left: '70%', top: '470px', width: '300px', height: '260px', rotate: '4deg' },
-]
-// Escenas de reemplazo mientras los proyectos no tengan `portada`
-const SCENES: Scene[] = ['sunset', 'venue', 'dj', 'gala', 'launch', 'arch']
-const GALERIA: Scene[] = ['led', 'venue', 'sunset']
+const pad = (v: number) => String(v).padStart(2, '0')
 
-const meta = (p: Project) => [p.tipo, p.ubicacion, p.anio].join(' · ')
-
-function Cover({ p, index, caption }: { p: Project; index: number; caption?: string }) {
-  if (p.portada)
-    return (
-      <img
-        src={p.portada}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        className="media-zoom absolute inset-0 h-full w-full object-cover"
-      />
-    )
-  return <MediaPlaceholder scene={SCENES[index % SCENES.length]} caption={caption} className="absolute! inset-0" />
-}
-
-function Detail({ p, index, onClose, onNext }: { p: Project; index: number; onClose: () => void; onNext: () => void }) {
-  // Galería de 3: fotos reales si existen; si no, escenas de reemplazo. La tercera es el video.
-  const slots = [0, 1, 2]
-  return (
-    <>
-      <div className="relative h-[400px] mobile:h-[280px]">
-        <Cover p={p} index={index} caption="Foto principal del proyecto" />
-      </div>
-      <div className="p-[clamp(24px,4cqi,48px)]">
-        {p.demo && <Label className="mb-3.5!">[Proyecto demostrativo]</Label>}
-        <h3 className="display text-[clamp(42px,5.4cqi,76px)]" id="t-proyecto">
-          {p.nombre}
-        </h3>
-        <dl className="my-6 grid grid-cols-3 border-y border-line-soft mobile:grid-cols-1">
-          {[
-            ['Tipo de producción', p.tipo],
-            ['Ubicación', p.ubicacion],
-            ['Año', p.anio],
-          ].map(([dt, dd], i) => (
-            <div
-              key={dt}
-              className={`py-3.5 pr-4 ${i > 0 ? 'border-l border-line-soft pl-4 mobile:border-t mobile:border-l-0 mobile:pl-0' : ''}`}
-            >
-              <dt className="font-mono text-[10px] text-[#666] uppercase">{dt}</dt>
-              <dd className="mt-1.5 ml-0 text-base font-medium">{dd}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="mt-0 mb-5 max-w-[62ch] text-[17px] leading-[1.6] text-[#333]">{p.descripcion}</p>
-        <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0" aria-label="Servicios">
-          {p.servicios.map((s) => (
-            <li key={s} className="bg-mist px-2.5 py-[7px] font-mono text-[11px] uppercase">
-              {s}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-5 grid grid-cols-3 gap-2.5 mobile:grid-cols-1">
-          {slots.map((s) => {
-            const esVideo = s === 2
-            const foto = p.galeria[s]
-            if (esVideo && p.video)
-              return (
-                <a
-                  key={s}
-                  href={p.video}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Ver el video de ${p.nombre}`}
-                  className="chamfer-2 relative block h-[180px] overflow-hidden bg-[#1a1a1a]"
-                >
-                  {foto && <img src={foto} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />}
-                  <span className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-14 w-14 place-items-center bg-red text-white">
-                      <Play />
-                    </span>
-                  </span>
-                </a>
-              )
-            if (foto)
-              return (
-                <div key={s} className="chamfer-2 relative h-[180px] overflow-hidden">
-                  <img src={foto} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
-                </div>
-              )
-            // Sin material todavía: el play es solo un rótulo, no un control
-            return (
-              <MediaPlaceholder
-                key={s}
-                scene={GALERIA[s]}
-                caption={esVideo ? 'Video' : `Foto 0${s + 1}`}
-                className="chamfer-2 h-[180px]"
-              >
-                {esVideo && (
-                  <span className="absolute inset-0 z-4 grid place-items-center" aria-hidden="true">
-                    <span className="grid h-14 w-14 place-items-center bg-red text-white">
-                      <Play />
-                    </span>
-                  </span>
-                )}
-              </MediaPlaceholder>
-            )
-          })}
-        </div>
-        <div className="mt-8 flex flex-wrap gap-2">
-          <Button href="#contacto" tone="red" onClick={onClose}>
-            Quiero algo así
-          </Button>
-          <Button tone="ink" icon="right" onClick={onNext}>
-            Siguiente proyecto
-          </Button>
-        </div>
-      </div>
-    </>
-  )
-}
-
+/**
+ * Tipos de proyecto que cubre PRIMO, en un carrusel.
+ * No hace falta un video por tarjeta: uno o dos videos de fondo se comparten entre todas
+ * (projects.json → `videos`) y la tarjeta central hace fundido entre ellos.
+ */
 export function Proyectos() {
-  const items = projects.items
-  const [open, setOpen] = useState(-1)
-  const hayDemos = items.some((p) => p.demo)
+  const { items, videos } = projects
+  const n = items.length
+  const [i, setI] = useState(0)
+  const prev = (i - 1 + n) % n
+  const next = (i + 1) % n
+  const videoOf = (idx: number) => (videos.length ? (items[idx].video ?? idx) % videos.length : -1)
+  const active = videoOf(i)
 
-  return (
-    <section id="proyectos" className="section bg-mist" aria-labelledby="t-proyectos">
-      <Guides />
-      <div className="wrap">
-        <SectionHead etiqueta={projects.etiqueta} titulo={projects.titulo} id="t-proyectos" />
-
-        <div className="relative mt-10 h-[820px] tablet:grid tablet:h-auto tablet:grid-cols-2 tablet:gap-3 mobile:grid-cols-1">
-          <div className="pointer-events-none absolute top-1/2 left-1/2 z-6 w-[min(560px,80%)] -translate-1/2 text-center tablet:static tablet:col-span-full tablet:mb-3 tablet:w-auto tablet:translate-none tablet:text-left">
-            <p className="display text-[30px] leading-none">Producciones de cualquier escala</p>
-            <p className="mt-2.5 mb-0 font-mono text-[11px] text-[#555] uppercase">
-              Tocá un proyecto para ver el detalle{hayDemos && ' · Ejemplos demostrativos'}
-            </p>
-          </div>
-          {items.map((p, i) => {
-            const pos = POS[i % POS.length]
-            return (
-              <button
-                key={p.nombre}
-                type="button"
-                onClick={() => setOpen(i)}
-                aria-haspopup="dialog"
-                className="tile group"
-                style={
-                  {
-                    '--x': pos.left,
-                    '--y': pos.top,
-                    '--w': pos.width,
-                    '--h': pos.height,
-                    '--r': pos.rotate,
-                  } as React.CSSProperties
-                }
-              >
-                <Cover p={p} index={i} />
-                {p.demo && (
-                  <span className="absolute top-2.5 left-2.5 z-4 bg-white px-2 py-[5px] font-mono text-[10px] text-ink uppercase">
-                    Demo
-                  </span>
-                )}
-                <span className="absolute inset-x-0 bottom-0 z-4 bg-[linear-gradient(transparent,rgb(0_0_0/.75))] px-4 py-3.5 text-left text-white">
-                  <b className="display block text-2xl leading-none">{p.nombre}</b>
-                  <small className="mt-1.5 block font-mono text-[10px] uppercase opacity-90">{meta(p)}</small>
-                  <span className="sr-only"> — ver proyecto</span>
-                </span>
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
-      <Modal open={open >= 0} onClose={() => setOpen(-1)} labelledBy="t-proyecto">
-        {open >= 0 && (
-          <Detail
-            key={open}
-            p={items[open]}
-            index={open}
-            onClose={() => setOpen(-1)}
-            onNext={() => setOpen((open + 1) % items.length)}
+  const side = (idx: number, dir: 'Anterior' | 'Siguiente', chamfer: string) => {
+    const bg = videos[videoOf(idx)]
+    return (
+      <button
+        type="button"
+        onClick={() => setI(idx)}
+        aria-label={`${dir}: ${items[idx].titulo}`}
+        className={`group relative block h-[360px] w-full overflow-hidden border-0 bg-coal p-0 text-left opacity-60 transition-opacity duration-400 hover:opacity-90 focus-visible:opacity-90 tablet:hidden ${chamfer}`}
+      >
+        {bg && (
+          <img
+            src={bg.poster}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="media-zoom absolute inset-0 h-full w-full object-cover"
           />
         )}
-      </Modal>
+        <span className="absolute inset-0 bg-[linear-gradient(rgb(0_0_0/.35),rgb(0_0_0/.8))]" aria-hidden="true" />
+        <span
+          className={`display absolute right-5 bottom-5 left-5 text-[26px] text-white ${dir === 'Anterior' ? 'pl-10' : ''}`}
+        >
+          {items[idx].titulo}
+        </span>
+      </button>
+    )
+  }
+
+  return (
+    <section id="proyectos" className="section dark" aria-labelledby="t-proyectos">
+      <Guides />
+      <div className="wrap">
+        <SectionHead etiqueta={projects.etiqueta} titulo={projects.titulo} id="t-proyectos">
+          <p className="mt-[18px] mb-0 max-w-[52ch] text-base leading-[1.6] text-[#cfcfcf]">{projects.bajada}</p>
+        </SectionHead>
+
+        <div
+          className="relative mt-16 grid grid-cols-[1fr_1.6fr_1fr] items-end gap-5 tablet:grid-cols-1"
+          role="group"
+          aria-roledescription="carrusel"
+          aria-label="Tipos de proyecto"
+        >
+          {side(prev, 'Anterior', 'chamfer-bl')}
+
+          <div className="chamfer-tr relative h-[520px] overflow-hidden bg-coal mobile:h-[500px]">
+            {/* Los videos quedan montados y solo cambia cuál se ve: así no se reinician en cada tarjeta */}
+            {videos.map((v, k) => (
+              <div
+                key={v.video}
+                className={`absolute inset-0 transition-opacity duration-700 ${k === active ? 'opacity-100' : 'opacity-0'}`}
+              >
+                <MediaVideo src={v.video} poster={v.poster} />
+              </div>
+            ))}
+            <span
+              className="absolute inset-0 bg-[linear-gradient(rgb(0_0_0/.35),rgb(0_0_0/.25)_30%,rgb(0_0_0/.88))]"
+              aria-hidden="true"
+            />
+            <span className="absolute top-6 left-7 bg-white px-3 py-2 font-mono text-xs text-ink mobile:left-5">
+              {pad(i + 1)} / {pad(n)}
+            </span>
+            <motion.div
+              key={i}
+              aria-live="polite"
+              className="absolute inset-x-7 bottom-7 mobile:inset-x-5 mobile:bottom-5"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: EASE }}
+            >
+              <h3 className="display text-[clamp(34px,3.6cqi,52px)] text-white">{items[i].titulo}</h3>
+              <p className="mt-3.5 mb-0 max-w-[46ch] text-base leading-[1.55] text-[#e5e5e5]">
+                {items[i].descripcion}
+              </p>
+              <ul className="mt-4 mb-0 flex list-none flex-wrap gap-1.5 p-0" aria-label="Servicios incluidos">
+                {items[i].servicios.map((s) => (
+                  <li key={s} className="bg-white/14 px-2.5 py-[7px] font-mono text-[11px] text-white uppercase backdrop-blur-sm">
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          {side(next, 'Siguiente', 'chamfer-tr')}
+        </div>
+
+        <div className="mt-7 flex flex-wrap items-center justify-between gap-x-4 gap-y-6">
+          <div className="flex gap-1.5" aria-hidden="true">
+            {items.map((it, d) => (
+              <span
+                key={it.titulo}
+                className={`block h-0.5 transition-all duration-300 ${d === i ? 'w-12 bg-white' : 'w-6 bg-white/25'}`}
+              />
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Tipo de proyecto anterior"
+              onClick={() => setI(prev)}
+              className="grid h-14 w-14 place-items-center border-0 bg-white text-ink"
+            >
+              <ArrowLeft size={18} stroke={1.5} />
+            </button>
+            <button
+              type="button"
+              aria-label="Tipo de proyecto siguiente"
+              onClick={() => setI(next)}
+              className="grid h-14 w-14 place-items-center border-0 bg-red text-white"
+            >
+              <ArrowRight size={18} stroke={1.5} />
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-5 border-t border-white/15 pt-8">
+          <p className="display m-0 text-[30px] leading-none">Producciones de cualquier escala</p>
+          <Button href={projects.cta.href} tone="red" arrow="ink" className="[&_.btn-arrow]:bg-white [&_.btn-arrow]:text-ink">
+            {projects.cta.texto}
+          </Button>
+        </div>
+      </div>
     </section>
   )
 }

@@ -1,6 +1,5 @@
 // Punto único de acceso al contenido. Los textos viven en los JSON de esta carpeta:
 // para editar el sitio alcanza con tocar los JSON, sin cambiar componentes.
-import eventsJson from './events.json'
 import projectsJson from './projects.json'
 import rentalJson from './rental.json'
 import rosterJson from './roster.json'
@@ -39,29 +38,26 @@ export interface Artist {
 }
 
 export interface Project {
-  nombre: string
-  tipo: string
-  ubicacion: string
-  anio: string
+  titulo: string
   descripcion: string
   servicios: string[]
-  portada: string | null
-  galeria: string[]
-  video: string | null
-  demo: boolean
+  /** Posición del video de fondo dentro de `videos`. Si falta, se reparte por orden. */
+  video?: number
 }
 
-export interface EventType {
-  titulo: string
-  media: string | null
+export interface BackgroundVideo {
+  video: string
+  poster: string
 }
 
 export const site = siteJson
 export const rental = rentalJson as typeof rentalJson & { media: Media; ctas: Link[] }
 export const services = servicesJson as Omit<typeof servicesJson, 'items'> & { items: Service[] }
 export const roster = rosterJson as Omit<typeof rosterJson, 'artistas'> & { artistas: Artist[] }
-export const projects = projectsJson as Omit<typeof projectsJson, 'items'> & { items: Project[] }
-export const events = eventsJson as Omit<typeof eventsJson, 'items'> & { items: EventType[] }
+export const projects = projectsJson as Omit<typeof projectsJson, 'items' | 'videos'> & {
+  items: Project[]
+  videos: BackgroundVideo[]
+}
 
 /** Resuelve los href del contenido: "whatsapp" apunta al WhatsApp de contacto. */
 export function resolveHref(href: string): string {

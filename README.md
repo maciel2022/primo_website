@@ -19,7 +19,8 @@ Todo el texto sale de `src/content/*.json`; no hace falta tocar componentes.
 - **Datos de contacto:** `site.json` → `contacto` (WhatsApp, email, Instagram, teléfono, zona).
 - **Agregar un artista:** un objeto en `roster.json` y su foto en `public/images/artistas/`.
 - **Equipo de rental:** `rental.json`.
-- **Servicios, proyectos y tipos de eventos:** `services.json`, `projects.json`, `events.json`.
+- **Servicios:** `services.json`.
+- **Tipos de proyecto (carrusel):** `projects.json`. Los videos de fondo van en `videos` (alcanza con uno) y cada item elige cuál usar con `video: 0`, `1`…
 
 Los medios están en `public/` (`videos/`, `posters/`, `images/`).
 
@@ -29,9 +30,9 @@ Los medios están en `public/` (`videos/`, `posters/`, `images/`).
 src/
   content/      JSON + index.ts (tipos y acceso al contenido)
   components/
-    ui/         Button, Label, Guides, MediaVideo, MediaPlaceholder, Modal, Accordion, Reveal…
+    ui/         Button, Label, Guides, MediaVideo, MediaPlaceholder, Accordion, Reveal…
     layout/     Navbar, MobileMenu, Footer, Logo
-    sections/   Hero, Nosotros, Rental, Servicios, TiposEventos, Artistas, Proyectos, Proceso, Pilares, Contacto
+    sections/   Hero, Nosotros, Rental, Servicios, Artistas, Proyectos, Proceso, Pilares, Contacto
   hooks/        useInViewVideo, usePrefersReducedMotion, useDialog
   styles/       scenes.css (escenas de reemplazo para fotos que faltan)
 primo-web-kit/  kit original del diseño (referencia; no se edita)

@@ -40,9 +40,9 @@ src/
   main.tsx, App.tsx, index.css        # @theme con tokens, fuentes, utilidades (chamfer, guides)
   content/                            # importar los JSON de /content (copiarlos acá)
   components/
-    ui/       Button, Label, Chamfer, Guides, MediaVideo, MediaPlaceholder, Modal, Accordion
+    ui/       Button, Label, Guides, MediaVideo, MediaPlaceholder, Accordion, Reveal
     layout/   Navbar, MobileMenu, Footer
-    sections/ Hero, Nosotros, Rental, Servicios, TiposEventos, Artistas, Proyectos, Proceso, Pilares, Contacto
+    sections/ Hero, Nosotros, Rental, Servicios, Artistas, Proyectos, Proceso, Pilares, Contacto
   hooks/      useInViewVideo, usePrefersReducedMotion
 ```
 
@@ -89,13 +89,12 @@ Ver `primo-web-kit/reference/propuesta-b.dc.html` para el detalle visual exacto 
 3. **Nosotros** (`#nosotros`). Grilla 3/9: a la izquierda la etiqueta y el video chico `nosotros-salon` (chamfer `ch2`, 220px de alto). A la derecha, el statement en display con una **barra roja que crece** al entrar en pantalla entre las dos frases y la palabra "conceptos" en rojo. Debajo, 2 columnas: el párrafo + CTA "Nuestro rental" y el video `nosotros-en-vivo` (chamfer `ch`, 380px de alto).
 4. **Rental** (`#rental`). Grilla 7/5. Izquierda: el video `rental-sonido` con chamfer, la etiqueta roja "Equipo destacado" arriba a la izquierda, el título "Sonido profesional" abajo en blanco y un degradado oscuro abajo para que se lea. **La altura del video se estira para igualar la columna de texto**: arriba y abajo alineados. Derecha: descripción (17–20px), ficha técnica como `<dl>` (dato en mono gris / valor), nota chica, CTAs "Consultá disponibilidad" y "WhatsApp". Debajo, una fila de chips "Otros productos de rental →" que llevan a `#contacto`.
 5. **Servicios** (`#servicios`, "Soluciones integrales."). Grilla 3×3 con bordes de 1px. Cada tarjeta: video (o imagen) de fondo cover + degradado oscuro abajo + número mono, título display, descripción y un cuadrado con flecha que rota 45° en hover. En hover el medio hace un zoom suave (scale 1.06). Colores de texto por tarjeta según `services.json` → `texto` (Marketing usa texto **negro** con velo **blanco**; Tickets usa blanco sobre velo negro fuerte). Toda la tarjeta lleva a `#contacto`.
-6. **Tipos de eventos** (sección **negra**). Carrusel: tarjeta central grande (chamfer `ch`, 520px) con índice "01 / 06" en una etiqueta blanca y el título, más las tarjetas laterales anterior y siguiente al 60% de opacidad (clickeables). Flechas: anterior (blanca) y siguiente (roja), e indicador de barras. En ≤1080px se ocultan las laterales. Sin fotos todavía: usar `MediaPlaceholder`.
-7. **Artistas** (`#artistas`, "Nuestro roster."). Filtros como grupo segmentado con borde negro (Todos / DJs / Bandas / Solistas / Sesionistas; `aria-pressed`). Grilla de 4 columnas (2 en tablet, 1 en mobile) de tarjetas de 400px con chamfers alternados, foto cover (`fotoPosicion` del JSON), degradado oscuro, nombre en display, y "DJ · estilo · estilo…" en mono. "Perfil demo" solo si `demo: true`. Al cambiar el filtro, las tarjetas entran con fade. Botón "Consultá por artistas".
-8. **Proyectos** (`#proyectos`, fondo `mist`). **Collage** de 6 tarjetas inclinadas (rotaciones entre -4° y 4°, posiciones absolutas en desktop, ver `pos` en la referencia), con etiqueta "Demo", título y "tipo · ubicación · año". En hover se enderezan y crecen. Texto central "Producciones de cualquier escala". En ≤1080px pasan a una grilla de 2 columnas sin rotación (1 en mobile). Click → **modal** con foto principal, tipo/ubicación/año en 3 columnas, descripción, chips de servicios, galería de 3 (la tercera con un botón de play para un video), CTA "Quiero algo así" (cierra y va a `#contacto`) y "Siguiente proyecto". El modal cierra con Esc, con el fondo y con el botón ✕ rojo. Hay que atrapar el foco y bloquear el scroll del body.
-9. **Proceso** (`#proceso`). Grilla 3/9: imagen lateral (placeholder) y un **acordeón** de 5 pasos ("01/ Conceptualización"…) con el ícono + que se transforma en −. El paso 1 está abierto por defecto.
-10. **Pilares.** Banda **roja** con un marquee horizontal infinito de "CREATIVIDAD ◆ PROFESIONALISMO ◆ TECNOLOGÍA ◆ COMPROMISO" en display gigante y blanco. Debajo, el título "Cada detalle importa." y 4 columnas con número mono `[01]`, título y texto, separadas por líneas blancas.
-11. **Contacto** (`#contacto`, sección **negra**). Título gigante "Hagamos algo extraordinario." + bajada. Grilla 5/7. Izquierda: WhatsApp destacado (bloque rojo), email, Instagram y zona como filas con flecha. Derecha: un formulario con nombre*, correo*, "¿Qué necesitás?"*, tipo de evento, fecha estimada (`date`) y descripción. Inputs oscuros con borde inferior que se pone rojo en focus. Al enviar muestra el estado de éxito ("Gracias por escribirnos.") con un botón "Enviar otra consulta".
-12. **Footer** negro. Logo, claim, columnas Navegación / Redes / Contacto, wordmark **PRIMO©** gigante en rojo, copyright y "Volver arriba ↑".
+6. **Artistas** (`#artistas`, "Nuestro roster."). Filtros como grupo segmentado con borde negro (Todos / DJs / Bandas / Solistas / Sesionistas; `aria-pressed`). Grilla de 4 columnas (2 en tablet, 1 en mobile) de tarjetas de 400px con chamfers alternados, foto cover (`fotoPosicion` del JSON), degradado oscuro, nombre en display, y "DJ · estilo · estilo…" en mono. "Perfil demo" solo si `demo: true`. Al cambiar el filtro, las tarjetas entran con fade. Botón "Consultá por artistas".
+7. **Proyectos** (`#proyectos`, sección **negra**, "Proyectos que podemos cubrir."). Fusiona las secciones "Tipos de eventos" y "Proyectos" del diseño original (cambio pedido el 2026-11-20: no hay fotos ni proyectos reales para mostrar, así que la sección cuenta qué tipos de proyecto cubre PRIMO). Carrusel: tarjeta central grande (chamfer `ch`, 520px) con índice "01 / 06" en una etiqueta blanca, título, descripción y chips de servicios, más las tarjetas laterales anterior y siguiente al 60% de opacidad (clickeables). Flechas: anterior (blanca) y siguiente (roja), e indicador de barras. En ≤1080px se ocultan las laterales. **No hay un video por tarjeta:** uno o dos videos de fondo se comparten entre todas (`projects.json` → `videos`; cada item elige uno con `video: 0|1`) y la tarjeta central hace fundido entre ellos. Debajo, "Producciones de cualquier escala" y el CTA "Quiero algo así" a `#contacto`. No lleva etiquetas "Demo", ubicación, año ni modal: no se muestran proyectos ficticios.
+8. **Proceso** (`#proceso`). Grilla 3/9: imagen lateral (placeholder) y un **acordeón** de 5 pasos ("01/ Conceptualización"…) con el ícono + que se transforma en −. El paso 1 está abierto por defecto.
+9. **Pilares.** Banda **roja** con un marquee horizontal infinito de "CREATIVIDAD ◆ PROFESIONALISMO ◆ TECNOLOGÍA ◆ COMPROMISO" en display gigante y blanco. Debajo, el título "Cada detalle importa." y 4 columnas con número mono `[01]`, título y texto, separadas por líneas blancas.
+10. **Contacto** (`#contacto`, sección **negra**). Título gigante "Hagamos algo extraordinario." + bajada. Grilla 5/7. Izquierda: WhatsApp destacado (bloque rojo), email, Instagram y zona como filas con flecha. Derecha: un formulario con nombre*, correo*, "¿Qué necesitás?"*, tipo de evento, fecha estimada (`date`) y descripción. Inputs oscuros con borde inferior que se pone rojo en focus. Al enviar muestra el estado de éxito ("Gracias por escribirnos.") con un botón "Enviar otra consulta".
+11. **Footer** negro. Logo, claim, columnas Navegación / Redes / Contacto, wordmark **PRIMO©** gigante en rojo, copyright y "Volver arriba ↑".
 
 ---
 
@@ -126,7 +125,7 @@ Ver `primo-web-kit/reference/propuesta-b.dc.html` para el detalle visual exacto 
 - HTML semántico: `header/nav/main/section/footer`, un solo `h1` (el wordmark, con `aria-label="PRIMO"`), `h2` por sección.
 - Contraste mínimo de 4.5:1 en texto chico. Foco visible: outline rojo de 2px.
 - Videos decorativos con `aria-hidden`. Los que transmiten contenido llevan descripción.
-- Menú mobile y modal: `role="dialog"`, `aria-modal`, foco atrapado, Esc para cerrar y foco devuelto al disparador.
+- Menú mobile: `role="dialog"`, `aria-modal`, foco atrapado, Esc para cerrar y foco devuelto al disparador.
 - Áreas táctiles de 44px o más. Inputs con `<label>`.
 
 ## SEO
@@ -145,9 +144,8 @@ Dejar `onSubmit` preparado para un servicio externo, con un `TODO` claro. Recome
 - [ ] Número de WhatsApp, email, Instagram, teléfono y zona de cobertura reales (`src/content/site.json`).
 - [ ] **Reemplazar los videos de muestra** por material propio o con licencia comercial. Hoy son de bancos de stock y se usan solo como maqueta.
 - [ ] **Collage de tickets** (`06-tickets.jpg`): está hecho con plantillas de terceros. Reemplazarlo por tickets con la marca PRIMO y verificar la licencia.
-- [ ] Fotos para Tipos de eventos, Proceso y Proyectos.
+- [ ] Foto para Proceso y videos propios para el carrusel de Proyectos (hoy usa dos videos de muestra).
 - [ ] Los 6 perfiles demo restantes del roster.
-- [ ] Proyectos reales, o sacar la sección hasta tenerlos.
 - [ ] Endpoint del formulario.
 - [ ] Favicon y logo definitivo de PRIMO.
 

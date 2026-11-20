@@ -1,104 +1,58 @@
 {
   "etiqueta": "[PR/ Proyectos]",
-  "titulo": "Nuestro trabajo habla por nosotros.",
-  "nota": "Todos son DEMOSTRATIVOS: mostrar la etiqueta 'Demo' hasta reemplazarlos por proyectos reales.",
+  "titulo": "Proyectos que podemos cubrir.",
+  "bajada": "Del atardecer en la playa al salón íntimo: estos son los formatos que producimos de punta a punta.",
+  "cta": {
+    "texto": "Quiero algo así",
+    "href": "#contacto"
+  },
+  "nota": "Los videos de fondo se comparten entre tarjetas: cada item elige uno por su posición en la lista `videos` (0, 1…). Alcanza con uno solo.",
+  "videos": [
+    {
+      "video": "/videos/nosotros-en-vivo.mp4",
+      "poster": "/posters/nosotros-en-vivo.jpg"
+    },
+    {
+      "video": "/videos/servicios/07-locaciones.mp4",
+      "poster": "/posters/servicios/07-locaciones.jpg"
+    }
+  ],
   "items": [
     {
-      "nombre": "Sunset session frente al mar",
-      "tipo": "Sunset session",
-      "ubicacion": "[Ubicación]",
-      "anio": "[Año]",
-      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
-      "servicios": [
-        "Rental de sonido",
-        "DJ",
-        "Iluminación",
-        "Barra"
-      ],
-      "portada": null,
-      "galeria": [],
-      "video": null,
-      "demo": true
+      "titulo": "Sunset sessions",
+      "descripcion": "Música frente al mar a la hora del atardecer, con sonido, DJ, luces y barra resueltos de punta a punta.",
+      "servicios": ["Rental de sonido", "DJ", "Iluminación", "Barra"],
+      "video": 1
     },
     {
-      "nombre": "Show acústico en salón",
-      "tipo": "Show íntimo",
-      "ubicacion": "[Ubicación]",
-      "anio": "[Año]",
-      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
-      "servicios": [
-        "Sonido",
-        "Iluminación",
-        "Solista"
-      ],
-      "portada": null,
-      "galeria": [],
-      "video": null,
-      "demo": true
+      "titulo": "Shows íntimos",
+      "descripcion": "Formatos acústicos y de cerca en salones chicos, con sonido e iluminación a la medida del lugar.",
+      "servicios": ["Sonido", "Iluminación", "Solista"],
+      "video": 0
     },
     {
-      "nombre": "Noche de DJ en salón",
-      "tipo": "Sesión de DJ",
-      "ubicacion": "[Ubicación]",
-      "anio": "[Año]",
-      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
-      "servicios": [
-        "Rental de sonido",
-        "Iluminación",
-        "DJs"
-      ],
-      "portada": null,
-      "galeria": [],
-      "video": null,
-      "demo": true
+      "titulo": "Noches de DJ",
+      "descripcion": "Cabina profesional, sonido y luces para una noche de pista en salón, con DJs de nuestro roster.",
+      "servicios": ["Rental de sonido", "Iluminación", "DJs"],
+      "video": 0
     },
     {
-      "nombre": "Evento privado en la playa",
-      "tipo": "Evento privado",
-      "ubicacion": "[Ubicación]",
-      "anio": "[Año]",
-      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
-      "servicios": [
-        "Locación",
-        "Decoración",
-        "Catering y barra"
-      ],
-      "portada": null,
-      "galeria": [],
-      "video": null,
-      "demo": true
+      "titulo": "Eventos privados en la playa",
+      "descripcion": "Celebraciones a medida: encontramos la locación, la ambientamos y coordinamos catering y barra.",
+      "servicios": ["Locación", "Decoración", "Catering y barra"],
+      "video": 1
     },
     {
-      "nombre": "Lanzamiento de marca boutique",
-      "tipo": "Lanzamiento de marca",
-      "ubicacion": "[Ubicación]",
-      "anio": "[Año]",
-      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
-      "servicios": [
-        "Marketing y comunicación",
-        "Decoración",
-        "Foto y video"
-      ],
-      "portada": null,
-      "galeria": [],
-      "video": null,
-      "demo": true
+      "titulo": "Lanzamientos de marca",
+      "descripcion": "Presentaciones con concepto: comunicación, ambientación y registro en foto y video.",
+      "servicios": ["Marketing y comunicación", "Decoración", "Foto y video"],
+      "video": 0
     },
     {
-      "nombre": "Encuentro corporativo boutique",
-      "tipo": "Corporativo",
-      "ubicacion": "[Ubicación]",
-      "anio": "[Año]",
-      "descripcion": "Ejemplo demostrativo. Reemplazá este texto por una descripción breve del evento: el desafío, la propuesta y lo que hizo el equipo de producción.",
-      "servicios": [
-        "Sonido",
-        "Animación",
-        "Catering"
-      ],
-      "portada": null,
-      "galeria": [],
-      "video": null,
-      "demo": true
+      "titulo": "Corporativos boutique",
+      "descripcion": "Encuentros de empresa a escala chica, con sonido, animación y catering coordinados.",
+      "servicios": ["Sonido", "Animación", "Catering"],
+      "video": 1
     }
   ]
 }
