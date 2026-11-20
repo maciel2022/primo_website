@@ -121,6 +121,12 @@
   },
   "proceso": {
     "titulo": "De la idea a la experiencia.",
+    "media": {
+      "video": "/videos/proceso-montaje.mp4",
+      "poster": "/posters/proceso-montaje.jpg",
+      "alt": "Vista aérea de un escenario iluminado, con el público alrededor",
+      "encuadre": "50% 58%"
+    },
     "pasos": [
       {
         "titulo": "Conceptualización",

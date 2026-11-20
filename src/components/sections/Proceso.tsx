@@ -2,7 +2,7 @@ import { site } from '../../content'
 import { Accordion } from '../ui/Accordion'
 import { Guides } from '../ui/Guides'
 import { Label } from '../ui/Label'
-import { MediaPlaceholder } from '../ui/MediaPlaceholder'
+import { MediaVideo } from '../ui/MediaVideo'
 import { Reveal } from '../ui/Reveal'
 
 export function Proceso() {
@@ -13,12 +13,14 @@ export function Proceso() {
       <div className="wrap cols items-start tablet:block">
         <Reveal className="col-span-3">
           <Label>[PR/ Nuestro proceso]</Label>
-          <MediaPlaceholder
-            scene="dj"
-            caption="Foto · Montaje técnico"
-            alt="Montaje técnico (foto de referencia)"
-            className="chamfer-bl mt-10 h-[300px] tablet:max-w-[340px] [&_.scene-caption]:right-3.5 [&_.scene-caption]:left-auto!"
-          />
+          <div className="chamfer-bl relative mt-10 h-[300px] overflow-hidden bg-[#1a1a1a] tablet:max-w-[340px]">
+            <MediaVideo
+              src={proceso.media.video}
+              poster={proceso.media.poster}
+              alt={proceso.media.alt}
+              position={proceso.media.encuadre}
+            />
+          </div>
         </Reveal>
         <div className="col-span-9 col-start-4 tablet:mt-10">
           <Reveal>
