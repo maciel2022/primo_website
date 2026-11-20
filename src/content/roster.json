@@ -1,98 +1,35 @@
 {
   "etiqueta": "[PR/ Artistas]",
   "titulo": "Nuestro roster.",
-  "bajada": "DJs, bandas, solistas y sesionistas para cada momento del evento.",
-  "filtros": [
-    "Todos",
-    "DJs",
-    "Bandas",
-    "Solistas",
-    "Sesionistas"
-  ],
+  "bajada": "Dos artistas destacados y DJs para cada estilo.",
+  "destacado": "Artista destacado",
   "artistas": [
     {
       "nombre": "Guille Reboredo",
-      "categoria": "DJs",
-      "estilos": [
-        "House",
-        "Organic",
-        "Deep",
-        "Afro",
-        "Progressive house",
-        "Melodic house"
-      ],
+      "categoria": "DJ",
+      "estilos": ["House", "Organic", "Deep", "Afro", "Progressive house", "Melodic house"],
       "foto": "/images/artistas/guille-reboredo.jpg",
       "fotoPosicion": "50% 15%",
-      "demo": false
+      "presskit": null
     },
     {
       "nombre": "M@ZIEL",
-      "categoria": "DJs",
-      "estilos": [
-        "Minimal",
-        "House",
-        "UK style",
-        "Tech house",
-        "Indie tech",
-        "Bass house"
-      ],
+      "categoria": "DJ",
+      "estilos": ["Minimal", "House", "UK style", "Tech house", "Indie tech", "Bass house"],
       "foto": "/images/artistas/maziel.jpg",
       "fotoPosicion": "50% 18%",
-      "demo": false
-    },
-    {
-      "nombre": "[Nombre banda 01]",
-      "categoria": "Bandas",
-      "estilos": [
-        "[Estilo]"
-      ],
-      "foto": null,
-      "demo": true
-    },
-    {
-      "nombre": "[Nombre solista 01]",
-      "categoria": "Solistas",
-      "estilos": [
-        "[Estilo]"
-      ],
-      "foto": null,
-      "demo": true
-    },
-    {
-      "nombre": "[Nombre DJ 03]",
-      "categoria": "DJs",
-      "estilos": [
-        "[Estilo]"
-      ],
-      "foto": null,
-      "demo": true
-    },
-    {
-      "nombre": "[Nombre sesionista 01]",
-      "categoria": "Sesionistas",
-      "estilos": [
-        "[Instrumento]"
-      ],
-      "foto": null,
-      "demo": true
-    },
-    {
-      "nombre": "[Nombre banda 02]",
-      "categoria": "Bandas",
-      "estilos": [
-        "[Estilo]"
-      ],
-      "foto": null,
-      "demo": true
-    },
-    {
-      "nombre": "[Nombre solista 02]",
-      "categoria": "Solistas",
-      "estilos": [
-        "[Estilo]"
-      ],
-      "foto": null,
-      "demo": true
+      "presskit": null
     }
-  ]
+  ],
+  "estilos": {
+    "etiqueta": "DJs por estilo",
+    "titulo": "¿Buscás otro estilo?",
+    "texto": "Trabajamos con más DJs, bandas y solistas. Elegí un estilo o pedinos el listado completo de artistas y te lo enviamos.",
+    "items": ["Cachengue", "Cumbia", "Reggaetón old school", "Hip hop"],
+    "otro": "Otro estilo",
+    "cta": {
+      "texto": "Pedir el listado",
+      "href": "#contacto"
+    }
+  }
 }

@@ -1,68 +1,79 @@
-import { motion } from 'motion/react'
-import { useState } from 'react'
 import { roster, type Artist } from '../../content'
+import { pedirConsulta } from '../../lib/consulta'
 import { Button } from '../ui/Button'
 import { Guides } from '../ui/Guides'
 import { Label } from '../ui/Label'
-import { MediaPlaceholder, type Scene } from '../ui/MediaPlaceholder'
+import { Reveal } from '../ui/Reveal'
 import { SectionHead } from '../ui/SectionHead'
 
-const TODOS = roster.filtros[0]
-// Chamfers alternados por posición en la grilla
-const CHAMFERS = ['chamfer-tr', '', 'chamfer-bl', '']
-// Escenas de reemplazo para perfiles sin foto
-const SCENES: Scene[] = ['venue', 'launch', 'show', 'gala', 'dj', 'sunset']
+const consultaDeEstilo = (estilo: string) => () =>
+  pedirConsulta({ artistas: true, mensaje: `Busco un DJ de ${estilo.toLowerCase()}.` })
 
-/** "DJs" → "DJ", "Bandas" → "Banda" */
-const singular = (categoria: string) => categoria.replace(/s$/, '')
-
-function Card({ a, index, scene }: { a: Artist; index: number; scene: Scene }) {
+function Destacado({ a, index }: { a: Artist; index: number }) {
   return (
-    <motion.a
-      href="#contacto"
-      className={`group relative block h-[400px] overflow-hidden bg-[#1a1a1a] text-white no-underline mobile:h-[300px] ${CHAMFERS[index % 4]}`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: index * 0.04 }}
+    <Reveal
+      delay={index * 0.08}
+      className="grid grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-6 mobile:grid-cols-1 mobile:gap-5"
     >
-      {a.foto ? (
+      <div
+        className={`group relative h-[440px] overflow-hidden bg-[#1a1a1a] mobile:h-[400px] ${index % 2 === 0 ? 'chamfer-tr' : 'chamfer-bl'}`}
+      >
         <img
           src={a.foto}
-          alt=""
+          alt={`${a.nombre}, ${a.categoria}`}
           loading="lazy"
           decoding="async"
           className="media-zoom absolute inset-0 h-full w-full object-cover"
           style={{ objectPosition: a.fotoPosicion }}
         />
-      ) : (
-        <MediaPlaceholder scene={scene} className="absolute! inset-0" />
-      )}
-      <span className="absolute inset-0 bg-[linear-gradient(transparent_45%,rgb(0_0_0/.8))]" aria-hidden="true" />
-      <span className="absolute inset-0 flex flex-col justify-between p-[18px]">
-        {a.demo ? (
-          <span className="self-start bg-white px-2 py-[5px] font-mono text-[10px] text-ink uppercase">
-            Perfil demo
-          </span>
-        ) : (
-          <span />
-        )}
-        {/* Con el corte abajo a la izquierda, el texto se corre para no quedar recortado */}
-        <span className={CHAMFERS[index % 4] === 'chamfer-bl' ? 'pl-11' : ''}>
-          <b className="display block text-[30px] leading-none">{a.nombre}</b>
-          <small className="mt-2 block font-mono text-[11px] uppercase">
-            {[singular(a.categoria), ...a.estilos].join(' · ')}
-          </small>
-          <span className="sr-only"> — consultar</span>
+        <span className="absolute top-0 left-0 bg-red px-3.5 py-2.5 font-mono text-[11px] text-white uppercase">
+          {roster.destacado}
         </span>
-      </span>
-    </motion.a>
+      </div>
+      <div className="flex flex-col justify-between gap-8 border-t border-ink pt-5">
+        <div>
+          <p className="m-0 font-mono text-[11px] text-[#666] uppercase">
+            [{String(index + 1).padStart(2, '0')}] {a.categoria}
+          </p>
+          <h3 className="display mt-3 text-[clamp(40px,3.8cqi,56px)]">{a.nombre}</h3>
+          <ul className="mt-5 mb-0 flex list-none flex-wrap gap-1.5 p-0" aria-label={`Estilos de ${a.nombre}`}>
+            {a.estilos.map((e) => (
+              <li key={e} className="bg-mist px-2.5 py-[7px] font-mono text-[11px] uppercase">
+                {e}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-col items-start gap-2">
+          {a.presskit ? (
+            <Button href={a.presskit} download tone="red" icon="down">
+              Descargar presskit
+            </Button>
+          ) : (
+            // Sin PDF cargado todavía: el presskit se pide por el formulario
+            <Button
+              href="#contacto"
+              tone="red"
+              onClick={() => pedirConsulta({ artistas: true, mensaje: `Quiero recibir el presskit de ${a.nombre}.` })}
+            >
+              Pedir presskit
+            </Button>
+          )}
+          <Button
+            href="#contacto"
+            tone="ink"
+            onClick={() => pedirConsulta({ artistas: true, mensaje: `Quiero consultar por ${a.nombre}.` })}
+          >
+            Consultar fecha
+          </Button>
+        </div>
+      </div>
+    </Reveal>
   )
 }
 
 export function Artistas() {
-  const [cat, setCat] = useState(TODOS)
-  const visibles = roster.artistas.filter((a) => cat === TODOS || a.categoria === cat)
-
+  const { estilos } = roster
   return (
     <section id="artistas" className="section" aria-labelledby="t-artistas">
       <Guides />
@@ -71,49 +82,50 @@ export function Artistas() {
           <p className="mt-[18px] mb-0 max-w-[52ch] text-base leading-[1.6] text-[#333]">{roster.bajada}</p>
         </SectionHead>
 
-        <div
-          className="mt-10 flex w-max max-w-full flex-wrap border border-ink mobile:w-auto"
-          role="group"
-          aria-label="Filtrar artistas"
-        >
-          {roster.filtros.map((f) => (
-            <button
-              key={f}
-              type="button"
-              aria-pressed={cat === f}
-              onClick={() => setCat(f)}
-              className={`-mr-px -mb-px min-h-11 border-0 border-r border-b border-ink px-[18px] font-mono text-xs uppercase transition-colors duration-250 mobile:flex-auto ${
-                cat === f ? 'bg-ink text-white' : 'bg-white text-ink hover:bg-mist'
-              }`}
+        <div className="mt-14 grid grid-cols-2 gap-x-10 gap-y-14 tablet:grid-cols-1">
+          {roster.artistas.map((a, i) => (
+            <Destacado key={a.nombre} a={a} index={i} />
+          ))}
+        </div>
+
+        {/* El resto del roster no se publica: se consulta por estilo o se pide el listado */}
+        <Reveal className="cols mt-20 items-start bg-mist p-[clamp(24px,3.4cqi,48px)] tablet:block">
+          <div className="col-span-5">
+            <Label>{estilos.etiqueta}</Label>
+            <h3 className="display text-[clamp(34px,3.6cqi,52px)]">{estilos.titulo}</h3>
+          </div>
+          <div className="col-span-7 tablet:mt-6">
+            <p className="m-0 max-w-[56ch] text-[17px] leading-[1.6] text-[#333]">{estilos.texto}</p>
+            <ul className="mt-6 mb-0 flex list-none flex-wrap gap-2 p-0" aria-label="Consultar DJ por estilo">
+              {estilos.items.map((e) => (
+                <li key={e}>
+                  <a href="#contacto" onClick={consultaDeEstilo(e)} className="chip">
+                    {e}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href="#contacto"
+                  onClick={() => pedirConsulta({ artistas: true, mensaje: 'Busco un DJ de otro estilo: ' })}
+                  className="chip chip-outline"
+                >
+                  {estilos.otro} →
+                </a>
+              </li>
+            </ul>
+            <Button
+              href={estilos.cta.href}
+              tone="ink"
+              className="mt-8"
+              onClick={() =>
+                pedirConsulta({ artistas: true, mensaje: 'Quiero recibir el listado completo de artistas.' })
+              }
             >
-              {f}
-            </button>
-          ))}
-        </div>
-
-        {/* key={cat}: al cambiar el filtro las tarjetas vuelven a entrar con fade */}
-        <div key={cat} className="mt-7 grid grid-cols-4 gap-4 tablet:grid-cols-2 mobile:grid-cols-1 mobile:gap-3">
-          {visibles.map((a, i) => (
-            <Card
-              key={a.nombre}
-              a={a}
-              index={i}
-              scene={SCENES[roster.artistas.indexOf(a) % SCENES.length]}
-            />
-          ))}
-        </div>
-        {visibles.length === 0 && (
-          <p className="mt-7 font-mono text-xs text-[#555] uppercase" role="status">
-            Todavía no hay artistas en esta categoría.
-          </p>
-        )}
-
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-5">
-          <Label className="m-0!">¿Buscás un artista o un estilo en particular?</Label>
-          <Button href="#contacto" tone="ink">
-            Consultá por artistas
-          </Button>
-        </div>
+              {estilos.cta.texto}
+            </Button>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

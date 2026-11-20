@@ -32,9 +32,10 @@ export interface Artist {
   nombre: string
   categoria: string
   estilos: string[]
-  foto: string | null
+  foto: string
   fotoPosicion?: string
-  demo: boolean
+  /** Ruta al PDF en public/presskits/. Con null, el botón pide el presskit por el formulario. */
+  presskit: string | null
 }
 
 export interface Project {

@@ -317,3 +317,36 @@
     border-bottom-color: #ff8a8f;
   }
 }
+
+/* ───────── Chips clickeables (estilos de DJ) ───────── */
+@layer components {
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border: 1px solid var(--color-ink);
+    background: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition:
+      background 0.3s,
+      border-color 0.3s,
+      color 0.3s;
+  }
+  .chip:hover {
+    border-color: var(--color-red);
+    background: var(--color-red);
+  }
+  .chip-outline {
+    background: transparent;
+    color: var(--color-ink);
+  }
+  .chip-outline:hover {
+    color: #fff;
+  }
+}

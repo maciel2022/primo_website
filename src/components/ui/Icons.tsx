@@ -19,6 +19,11 @@ export const ArrowLeft = ({ size = 14, stroke = 1.6 }: P) => (
     <path d="M12 7H2M6 3L2 7l4 4" stroke="currentColor" strokeWidth={stroke} />
   </svg>
 )
+export const ArrowDown = ({ size = 14, stroke = 1.6 }: P) => (
+  <svg {...base(size)} viewBox="0 0 14 14">
+    <path d="M7 2v8M3 6.5l4 4 4-4M2 12.5h10" stroke="currentColor" strokeWidth={stroke} />
+  </svg>
+)
 export const Close = ({ size = 16, stroke = 1.6 }: P) => (
   <svg {...base(size)} viewBox="0 0 16 16">
     <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth={stroke} />

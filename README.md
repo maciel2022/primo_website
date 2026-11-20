@@ -17,7 +17,8 @@ npm run lint
 Todo el texto sale de `src/content/*.json`; no hace falta tocar componentes.
 
 - **Datos de contacto:** `site.json` → `contacto` (WhatsApp, email, Instagram, teléfono, zona).
-- **Agregar un artista:** un objeto en `roster.json` y su foto en `public/images/artistas/`.
+- **Artistas destacados:** `roster.json` → `artistas` (foto en `public/images/artistas/`). Para el presskit, poner el PDF en `public/presskits/` y su ruta en el campo `presskit`.
+- **Estilos de DJ para consultar:** `roster.json` → `estilos.items`.
 - **Equipo de rental:** `rental.json`.
 - **Servicios:** `services.json`.
 - **Tipos de proyecto (carrusel):** `projects.json`. Los videos de fondo van en `videos` (alcanza con uno) y cada item elige cuál usar con `video: 0`, `1`…

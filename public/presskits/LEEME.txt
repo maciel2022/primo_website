@@ -1,0 +1,4 @@
+Acá van los presskits de los artistas destacados (PDF).
+Después se enlazan en src/content/roster.json, campo "presskit":
+  "presskit": "/presskits/guille-reboredo.pdf"
+Mientras "presskit" sea null, el botón del sitio dice "Pedir presskit" y lleva al formulario.

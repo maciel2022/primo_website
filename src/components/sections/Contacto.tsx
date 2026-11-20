@@ -1,5 +1,6 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { site } from '../../content'
+import { useConsulta } from '../../lib/consulta'
 import { Button } from '../ui/Button'
 import { ArrowDiag } from '../ui/Icons'
 import { Guides } from '../ui/Guides'
@@ -81,6 +82,16 @@ export function Contacto() {
   const { formulario } = contacto
   const [enviado, setEnviado] = useState(false)
   const [errores, setErrores] = useState<Errores>({})
+  // Precarga pedida desde otra sección (ej. "Consultar por un DJ de cumbia").
+  // Cambiar `id` vuelve a montar el formulario con los valores nuevos.
+  const [precarga, setPrecarga] = useState({ id: 0, servicio: '', mensaje: '' })
+  const opcionArtistas = formulario.servicios.find((s) => /artista/i.test(s)) ?? ''
+
+  useConsulta((c) => {
+    setEnviado(false)
+    setErrores({})
+    setPrecarga((p) => ({ id: p.id + 1, servicio: c.artistas ? opcionArtistas : '', mensaje: c.mensaje }))
+  })
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -147,6 +158,7 @@ export function Contacto() {
               </div>
             ) : (
               <form
+                key={precarga.id}
                 className="grid grid-cols-2 gap-3.5 mobile:grid-cols-1"
                 onSubmit={onSubmit}
                 noValidate
@@ -159,7 +171,7 @@ export function Contacto() {
                   <input id="f-email" name="email" type="email" autoComplete="email" required placeholder="tu@correo.com" className="field" {...a11y('email', 'f-email')} />
                 </Campo>
                 <Campo id="f-servicio" rotulo="¿Qué necesitás?" obligatorio error={errores.servicio}>
-                  <select id="f-servicio" name="servicio" required defaultValue="" className="field" {...a11y('servicio', 'f-servicio')}>
+                  <select id="f-servicio" name="servicio" required defaultValue={precarga.servicio} className="field" {...a11y('servicio', 'f-servicio')}>
                     <option value="">Seleccioná una opción</option>
                     {formulario.servicios.map((o) => (
                       <option key={o}>{o}</option>
@@ -181,6 +193,7 @@ export function Contacto() {
                   <textarea
                     id="f-descripcion"
                     name="descripcion"
+                    defaultValue={precarga.mensaje}
                     placeholder="Contanos qué imaginás: tipo de evento, cantidad de invitados, lugar…"
                     className="field"
                   />

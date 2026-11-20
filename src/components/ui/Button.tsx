@@ -1,6 +1,6 @@
 import type { MouseEventHandler, ReactNode } from 'react'
 import { isExternal } from '../../content'
-import { ArrowDiag, ArrowRight } from './Icons'
+import { ArrowDiag, ArrowDown, ArrowRight } from './Icons'
 
 type Tone = 'ink' | 'white' | 'red'
 
@@ -16,7 +16,9 @@ interface Props {
   tone?: Tone
   /** Color del bloque de la flecha */
   arrow?: 'ink' | 'red'
-  icon?: 'diag' | 'right'
+  icon?: 'diag' | 'right' | 'down'
+  /** En un link: descarga el archivo en vez de abrirlo */
+  download?: boolean
   /** Con href es un link; sin href es un <button> */
   href?: string
   type?: 'button' | 'submit'
@@ -31,6 +33,7 @@ export function Button({
   arrow = tone === 'ink' ? 'red' : 'ink',
   icon = 'diag',
   href,
+  download,
   type = 'button',
   onClick,
   block,
@@ -41,7 +44,7 @@ export function Button({
     <>
       <span className={`btn-text ${TEXT[tone]}`}>{children}</span>
       <span className={`btn-arrow ${arrow === 'red' ? 'bg-red' : 'bg-ink'}`}>
-        {icon === 'diag' ? <ArrowDiag /> : <ArrowRight />}
+        {icon === 'diag' ? <ArrowDiag /> : icon === 'down' ? <ArrowDown /> : <ArrowRight />}
       </span>
     </>
   )
@@ -52,6 +55,7 @@ export function Button({
         className={cls}
         href={href}
         onClick={onClick}
+        download={download}
         {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       >
         {inner}
